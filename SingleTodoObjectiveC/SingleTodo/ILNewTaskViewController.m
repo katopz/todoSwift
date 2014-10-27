@@ -41,7 +41,7 @@
 - (IBAction)addTaskButtonPressed:(id)sender
 {
     ILTask *task = [[ILTask alloc] init];
-    task.description = self.descriptionTextField.text;
+    task.taskDescription = self.descriptionTextField.text;
     task.done = NO;
     
     [self.todoVC AddTask:task];

@@ -47,10 +47,10 @@
 - (void) loadTasks
 {
     ILTask *task1 = [[ILTask alloc] init];
-    task1.description = @"Go buy some milk";
+    task1.taskDescription = @"Go buy some milk";
     
     ILTask *task2 = [[ILTask alloc] init];
-    task2.description = @"Learn some SWIFT";
+    task2.taskDescription = @"Listen to some Taylor Swift";
     
     [self.tasks addObject:task1];
     [self.tasks addObject:task2];
@@ -88,7 +88,7 @@
     }
     
     ILTask *task = self.tasks[indexPath.row];
-    cell.textLabel.text = task.description;
+    cell.textLabel.text = task.taskDescription;
     if (task.isDone) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
     } else {

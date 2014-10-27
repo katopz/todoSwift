@@ -10,7 +10,7 @@
 
 @interface ILTask : NSObject
 
-@property (strong, nonatomic) NSString *description;
+@property (strong, nonatomic) NSString *taskDescription;
 @property (assign, nonatomic, getter = isDone) BOOL done;
 
 @end
