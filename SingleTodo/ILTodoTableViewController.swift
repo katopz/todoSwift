@@ -10,15 +10,15 @@ import UIKit
 
 class ILTodoTableViewController: UITableViewController, UITableViewDataSource, UITableViewDelegate {
     
-    var tasks: NSMutableArray = NSMutableArray()
+    var tasks = [ILTask]()
     
     
     func loadTasks() {
         var task1 = ILTask(description: "Go buy some milk")
         var task2 = ILTask(description: "Learn some Swift")
         
-        self.tasks.addObject(task1)
-        self.tasks.addObject(task2)
+        self.tasks.append(task1)
+        self.tasks.append(task2)
     
     }
     
@@ -30,9 +30,14 @@ class ILTodoTableViewController: UITableViewController, UITableViewDataSource, U
         self.tableView.delegate = self
         self.tableView.dataSource = self
         
-        var navigationButton: UIBarButtonItem = UIBarButtonItem(title: "Add", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("showNewTaskViewController"))
+        var addButton: UIBarButtonItem = UIBarButtonItem(title: "Add", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("showNewTaskViewController"))
         
-        self.navigationItem.rightBarButtonItem = navigationButton
+        
+        var deleteButton: UIBarButtonItem = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("deleteTask"))
+        
+        
+        self.navigationItem.leftBarButtonItem = addButton
+        self.navigationItem.rightBarButtonItem = deleteButton
         
         self.tableView.reloadData()
         
@@ -44,14 +49,24 @@ class ILTodoTableViewController: UITableViewController, UITableViewDataSource, U
     }
     
     func showNewTaskViewController() {
-//        SettingsViewController *viewController = [[SettingsViewController alloc]initWithNibName:@"SettingsViewController" bundle:[NSBundle mainBundle]];
 
         var newTaskVC: ILNewTaskViewController = ILNewTaskViewController()
-//        var newTaskVC: ILNewTaskViewController = ILNewTaskViewController()
         
         newTaskVC.todoVC = self
                 
         self.navigationController!.pushViewController(newTaskVC, animated: true)
+    }
+    
+    func deleteTask() {
+        var newTasks = [ILTask]()
+        for task in tasks {
+            if (!task.done) {
+                newTasks.append(task)
+            }
+        }
+        self.tasks = newTasks
+        
+        self.tableView.reloadData()
     }
     
     override func didReceiveMemoryWarning() {
@@ -103,7 +118,7 @@ class ILTodoTableViewController: UITableViewController, UITableViewDataSource, U
     }
     
     func addTask(task: ILTask) {
-        self.tasks.addObject(task)
+        self.tasks.append(task)
         self.tableView.reloadData()
     }
 
