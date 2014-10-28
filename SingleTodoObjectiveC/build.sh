@@ -1,0 +1,1 @@
+xctool -scheme SingleTodo-cal -configuration Debug -sdk iphonesimulator 

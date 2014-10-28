@@ -29,6 +29,7 @@
     self.tasksTable.dataSource = self;
     
     UIBarButtonItem *anotherButton = [[UIBarButtonItem alloc] initWithTitle:@"Add" style:UIBarButtonItemStylePlain target:self action:@selector(showNewTaskViewController)];
+    anotherButton.accessibilityLabel = @"Add";
     
     self.navigationItem.rightBarButtonItem = anotherButton;
     
@@ -50,7 +51,7 @@
     task1.taskDescription = @"Go buy some milk";
     
     ILTask *task2 = [[ILTask alloc] init];
-    task2.taskDescription = @"Listen to some Taylor Swift";
+    task2.taskDescription = @"Learn some Real Swift";
     
     [self.tasks addObject:task1];
     [self.tasks addObject:task2];
