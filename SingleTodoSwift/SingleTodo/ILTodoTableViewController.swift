@@ -10,7 +10,6 @@ import UIKit
 
 class ILTodoTableViewController: UITableViewController, UITableViewDataSource, UITableViewDelegate {
     
-    @IBOutlet var tasksTable : UITableView = nil
     var tasks: NSMutableArray = NSMutableArray()
     
     
@@ -28,14 +27,14 @@ class ILTodoTableViewController: UITableViewController, UITableViewDataSource, U
         
         self.loadTasks()
         
-        self.tasksTable.delegate = self
-        self.tasksTable.dataSource = self
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
         
         var navigationButton: UIBarButtonItem = UIBarButtonItem(title: "Add", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("showNewTaskViewController"))
         
         self.navigationItem.rightBarButtonItem = navigationButton
         
-        self.tasksTable.reloadData()
+        self.tableView.reloadData()
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -45,11 +44,14 @@ class ILTodoTableViewController: UITableViewController, UITableViewDataSource, U
     }
     
     func showNewTaskViewController() {
+//        SettingsViewController *viewController = [[SettingsViewController alloc]initWithNibName:@"SettingsViewController" bundle:[NSBundle mainBundle]];
+
         var newTaskVC: ILNewTaskViewController = ILNewTaskViewController()
+//        var newTaskVC: ILNewTaskViewController = ILNewTaskViewController()
         
         newTaskVC.todoVC = self
                 
-        self.navigationController.pushViewController(newTaskVC, animated: true)
+        self.navigationController!.pushViewController(newTaskVC, animated: true)
     }
     
     override func didReceiveMemoryWarning() {
@@ -59,25 +61,25 @@ class ILTodoTableViewController: UITableViewController, UITableViewDataSource, U
     
     // #pragma mark - Table view data source
     
-    override func numberOfSectionsInTableView(tableView: UITableView?) -> Int {
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // Return the number of sections.
         return 1
     }
     
-    override func tableView(tableView: UITableView?, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // Return the number of rows in the section.
         return self.tasks.count
     }
     
     
-    override func tableView(tableView: UITableView?, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell? {
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cellIdentifier = "taskCell"
         
         let cell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: cellIdentifier)
         
         var task: ILTask = self.tasks[indexPath.row] as ILTask
         
-        cell.text = task.description
+        cell.textLabel.text = task.description
         
         if task.done {
             cell.accessoryType = UITableViewCellAccessoryType.Checkmark
@@ -89,9 +91,9 @@ class ILTodoTableViewController: UITableViewController, UITableViewDataSource, U
     return cell as UITableViewCell
     }
     
-    override func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!) {
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     
-        self.tasksTable.deselectRowAtIndexPath(indexPath, animated: false)
+        self.tableView.deselectRowAtIndexPath(indexPath, animated: false)
         
         var task: ILTask = self.tasks[indexPath.row] as ILTask
         
@@ -102,7 +104,7 @@ class ILTodoTableViewController: UITableViewController, UITableViewDataSource, U
     
     func addTask(task: ILTask) {
         self.tasks.addObject(task)
-        self.tasksTable.reloadData()
+        self.tableView.reloadData()
     }
 
     

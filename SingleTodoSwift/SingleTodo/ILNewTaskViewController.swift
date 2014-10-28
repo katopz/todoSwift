@@ -10,14 +10,16 @@ import UIKit
 
 class ILNewTaskViewController: UIViewController {
 
-    @IBOutlet var taskDescriptionTextField : UITextField
+    @IBOutlet var taskDescriptionTextField : UITextField?
     var todoVC: ILTodoTableViewController = ILTodoTableViewController()
 
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+    
+    required init(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+    
+    override init() {
+        super.init(nibName: "ILNewTaskViewController", bundle: nil)
     }
 
     override func didReceiveMemoryWarning() {
@@ -27,12 +29,12 @@ class ILNewTaskViewController: UIViewController {
 
 
     @IBAction func addTaskButtonPressed(sender : AnyObject) {
-        var task: ILTask = ILTask(description: self.taskDescriptionTextField.text)
+        var task: ILTask = ILTask(description: self.taskDescriptionTextField!.text)
         task.done = false
         
         self.todoVC.addTask(task)
         
-        self.navigationController.popViewControllerAnimated(true)
+        self.navigationController!.popViewControllerAnimated(true)
     }
     /*
     // #pragma mark - Navigation
