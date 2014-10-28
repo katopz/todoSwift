@@ -28,10 +28,15 @@
     self.tasksTable.delegate = self;
     self.tasksTable.dataSource = self;
     
-    UIBarButtonItem *anotherButton = [[UIBarButtonItem alloc] initWithTitle:@"Add" style:UIBarButtonItemStylePlain target:self action:@selector(showNewTaskViewController)];
-    anotherButton.accessibilityLabel = @"Add";
+    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithTitle:@"Add" style:UIBarButtonItemStylePlain target:self action:@selector(showNewTaskViewController)];
+    addButton.accessibilityLabel = @"Add";
     
-    self.navigationItem.rightBarButtonItem = anotherButton;
+    UIBarButtonItem *deleteButton = [[UIBarButtonItem alloc] initWithTitle:@"Delete" style:UIBarButtonItemStylePlain target:self action:@selector(deleteTask)];
+    deleteButton.accessibilityLabel = @"Add";
+    
+    
+    self.navigationItem.rightBarButtonItem = addButton;
+    self.navigationItem.leftBarButtonItem = deleteButton;
     
     [self loadTasks];
 
@@ -43,6 +48,11 @@
     newTaskVC.todoVC = self;
     
     [self.navigationController pushViewController:newTaskVC animated:YES];
+}
+
+- (void)deleteTask
+{
+    
 }
 
 - (void) loadTasks
