@@ -1,16 +1,11 @@
 TodoApp Swift
 ======
 
-This is just a super simple todo app with swift. It was built with learning purposes, we invite you to fork it and play with it!
+A todo application that has been forked from https://github.com/IcaliaLabs/todoSwift.
 
-It includes the objective-c and swift code base.
+It is here to support the article http://codingricky.com/calabash-ing-ios-applications/. 
 
-It ilustrastes how to use:
-
-* UINavigationController
-* UITableViewController
-* Custom UIBarButtonItem
-
+See the branch 'initial' for a fresh build that the article builds on top of.
 
 
 Credits
