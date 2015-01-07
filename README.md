@@ -1,3 +1,13 @@
+Update
+----
+Original : http://codingricky.com/calabash-ing-ios-applications/
+
+Fixed by me : http://sleepydesign.blogspot.com/2015/01/cucumber-hello-calabash-swift-ios.html 
+* fix textLabel? error,
+* fix touch could not find view: 'textField marked:'TaskDescription'', args: {:query=>"textField marked:'TaskDescription'"} (RuntimeError
+* ref : https://github.com/calabash/calabash-ios/issues/659
+* ref : https://github.com/calabash/calabash-ios/issues/658
+
 TodoApp Swift
 ======
 
