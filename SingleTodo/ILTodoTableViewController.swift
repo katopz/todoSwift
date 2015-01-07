@@ -94,7 +94,7 @@ class ILTodoTableViewController: UITableViewController, UITableViewDataSource, U
         
         var task: ILTask = self.tasks[indexPath.row] as ILTask
         
-        cell.textLabel.text = task.description
+        cell.textLabel?.text = task.description
         
         if task.done {
             cell.accessoryType = UITableViewCellAccessoryType.Checkmark
